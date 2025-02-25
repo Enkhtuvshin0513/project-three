@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { userSchema } from "../schema/userSchema";
 
-// Define an interface for the User document
 interface IUser extends Document {
   username: string;
   email: string;
@@ -11,7 +10,6 @@ interface IUser extends Document {
   getToken(): string;
 }
 
-// Extend the IUser interface for static methods
 interface UserModel extends Model<IUser> {
   register({
     email,
@@ -87,10 +85,8 @@ class User {
   }
 }
 
-// Load the User class into the schema
 userSchema.loadClass(User);
 
-// Create the Mongoose model with proper types
 export const Users: UserModel = mongoose.model<IUser, UserModel>(
   "Users",
   userSchema
